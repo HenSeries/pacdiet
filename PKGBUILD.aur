@@ -15,12 +15,17 @@ optdepends=(
   'yay: scan the yay build cache'
 )
 makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
-source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
-sha256sums=('SKIP')
+source=("$url/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz")
+sha256sums=('36ff509a7c8d30fd04c9f5900c00bdcd9a9718a430cc75ead99c490c386a8ddc')
 
 build() {
   cd "$pkgname-$pkgver"
   python -m build --wheel --no-isolation
+}
+
+check() {
+  cd "$pkgname-$pkgver"
+  python tests_quick.py
 }
 
 package() {
