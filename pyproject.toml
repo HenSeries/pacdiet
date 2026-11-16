@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pacdiet"
+version = "0.1.0"
+description = "A disk cleanup tool for Arch Linux that explains itself"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "Jorge Restrepo" }]
+keywords = ["arch", "pacman", "disk", "cleanup", "gtk4"]
+classifiers = [
+  "Environment :: X11 Applications :: GTK",
+  "Intended Audience :: End Users/Desktop",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+]
+# PyGObject and libadwaita come from pacman, not pip -- see README.
+dependencies = []
+
+[project.scripts]
+pacdiet = "pacdiet.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["pacdiet*"]
+
+[tool.setuptools.package-data]
+"pacdiet.ui" = ["style.css"]
